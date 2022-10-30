@@ -2,10 +2,10 @@
 class Database
 {
     //db params
-    private $host;
-    private $username;
-    private $password;
-    private $db_name;
+    private $host = 'localhost';
+    private $username = 'root';
+    private $password = 'root';
+    private $db_name = 'test';
     private $conn;
 
     //db connect
