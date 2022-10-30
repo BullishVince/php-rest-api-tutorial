@@ -1,27 +1,30 @@
 <?php
-    class Post {
-        //db stuff
-        private $conn;
-        private $table = 'posts';
-        
-        //post properties
-        public $id;
-        public $category_id;
-        public $category_name;
-        public $title;
-        public $body;
-        public $author;
-        public $created_at;
+class Post
+{
+    //db stuff
+    private $conn;
+    private $table = 'posts';
 
-        //constructor with db
-        public function __construct($db) {
-            $this->conn = $db;
-        }
+    //post properties
+    public $id;
+    public $category_id;
+    public $category_name;
+    public $title;
+    public $body;
+    public $author;
+    public $created_at;
 
-        //get posts
-        public function read() {
-            //create query
-            $query = "SELECT 
+    //constructor with db
+    public function __construct($db)
+    {
+        $this->conn = $db;
+    }
+
+    //get posts
+    public function read()
+    {
+        //create query
+        $query = "SELECT 
                 c.name AS category_name
                 p.id,
                 p.category_id,
@@ -33,12 +36,12 @@
                 LEFT JOIN categories c ON p.category_id = c.id
                 ORDER BY p.created_at DESC";
 
-            //prepare statement
-            $stmt = $this->conn->prepare($query);
+        //prepare statement
+        $stmt = $this->conn->prepare($query);
 
-            //execute query
-            $stmt->execute();
+        //execute query
+        $stmt->execute();
 
-            return $stmt;
-        }
+        return $stmt;
     }
+}
